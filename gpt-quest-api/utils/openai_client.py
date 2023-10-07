@@ -16,11 +16,31 @@ class OpenAIClient:
         openai.api_key = api_key
 
     @staticmethod
-    def generate_text(
+    def generate_event(
             prompt: str,
             model: str = "gpt-3.5-turbo",
-            max_tokens: int = 50,
-            system_prompt: str = "You are a helpful assistant."
+            max_tokens: int = 150,
+            system_prompt: str = """
+                                We are playing a game similar to DND. 
+                                You will be the dungeon master, I will be the player. 
+                                As the story progresses, I (the player) will be prompted by you with events 
+                                and you will ask me how I react. Provide output only in Json with 400-600 chars.
+                                The prompt and previous_event_summary should be about 150 chars each.
+
+                                The json will look like this:
+
+                                {
+                                "event": 
+                                    {
+                                    "event_title": str
+                                    "prompt": str
+                                    }
+                                "summary":
+                                    {
+                                    "previous_event_summary": str
+                                    }
+                                }
+                                """
     ) -> OpenAIResponseMessage:
         """
         Generate text based on a given prompt using the OpenAI API.
@@ -59,4 +79,4 @@ def get_openai_client():
 
 if __name__ == "__main__":
     client = get_openai_client()
-    print(client.generate_text("What is Quantum physics?"))
+    print(client.generate_event("I leap into the chasm"))
