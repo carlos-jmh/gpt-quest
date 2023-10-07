@@ -32,14 +32,14 @@ class FirebaseClient:
         return created_character.to_dict()
 
     #Create InitialString    
-    """def create_initial_string(self, initial_string:str) -> dict[str, Any] | None:
+    def create_initial_string(self, initial_string:str) -> dict[str, Any] | None:
         initial_string_data = {"initial_string": initial_string}
         created_initial_string = self.firebase_dao.add(INITIAL_STORY_COLLECTION, initial_string_data)
-        return created_initial_string.to_dict()"""
+        return created_initial_string.to_dict()
         
     #Create InitialStory
-    def create_initial_story(self, initial_story:InitialStory) -> dict[InitialStory, Any] | None:
-        initial_story_data = {"introduction": initial_story.initial_story, "character_id": initial_story.character_id, "title": initial_story.title}
+    def create_initial_story(self, character_id:str, initial_story:InitialStory) -> dict[InitialStory, Any] | None:
+        initial_story_data = {"introduction": initial_story.initial_story, "character_id": character_id}
         created_initial_story = self.firebase_dao.add(INITIAL_STORY_COLLECTION, initial_story_data)
         return created_initial_story.to_dict()
     
