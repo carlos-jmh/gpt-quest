@@ -20,7 +20,8 @@ def dalle_client (prompt):
     )
 
     # Print the URL of the generated image
-    print(response["data"][0]["url"])
+    return(response["data"][0]["url"])
 
-dalle_client("Walking in a lake")
+
+print(dalle_client("A bard fighting a clone of itself in a medieval castle"))
 
