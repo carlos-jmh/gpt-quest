@@ -18,7 +18,8 @@ class ClassesService:
         classes_list = [
             {
                 "name": "Barbarian",
-                "health": 140
+                "health": 140,
+                "items": []
             },
             {
                 "name": "Ranger",
