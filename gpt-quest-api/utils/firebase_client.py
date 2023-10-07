@@ -35,11 +35,11 @@ class FirebaseClient:
         }
     #Create Story Action
 
-        created_message = self.firebase_dao.add(MESSAGES_COLLECTION, message_data)
+        created_message = self.firebase_dao.add(STORY_COLLECTION, story_data)
         return created_message.to_dict()
 
     def subscribe_to_messages(self, callback: Callable) -> Watch:
-        subscription = self.firebase_dao.subscribe_to_collection(MESSAGES_COLLECTION, callback)
+        subscription = self.firebase_dao.subscribe_to_collection(STORY_COLLECTION, callback)
         return subscription
 
 
