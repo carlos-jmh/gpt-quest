@@ -31,6 +31,7 @@ gpt-quest-api/.env
 gpt-quest-api/.env.production
 gpt-quest-api/.env.development
 gpt-quest-api/.env.test
+gpt-quest-api/firestore_creds.json
 
 # Ignore IDE/Editor specific files
 .vscode/
