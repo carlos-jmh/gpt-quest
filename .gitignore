@@ -1,0 +1,41 @@
+# Ignore general files/directories
+/node_modules
+/build
+/dist
+/.cache
+*.log
+*.log.*
+logs
+log.txt
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.pycache/
+*.pyc
+__pycache__/
+*.db
+
+# Ignore Vite + React specific files/directories
+gpt-quest-web/node_modules
+gpt-quest-web/dist
+gpt-quest-web/.cache
+gpt-quest-web/.env.local
+gpt-quest-web/.env.production
+gpt-quest-web/.env.development
+gpt-quest-web/.env.test
+
+# Ignore API specific files/directories
+gpt-quest-api/.env.local
+gpt-quest-api/.env.production
+gpt-quest-api/.env.development
+gpt-quest-api/.env.test
+
+# Ignore IDE/Editor specific files
+.vscode/
+.idea/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw*
+.DS_Store
