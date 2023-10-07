@@ -27,7 +27,7 @@ gpt-quest-web/.env.test
 # Ignore API specific files/directories
 gpt-quest-api/node_modules
 gpt-quest-api/dist
-gpt-quest-api/.env.local
+gpt-quest-api/.env
 gpt-quest-api/.env.production
 gpt-quest-api/.env.development
 gpt-quest-api/.env.test
