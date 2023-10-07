@@ -19,7 +19,6 @@ class ClassesService:
             {
                 "name": "Barbarian",
                 "health": 140,
-                "items": []
             },
             {
                 "name": "Ranger",
