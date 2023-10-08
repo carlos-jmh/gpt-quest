@@ -10,7 +10,6 @@ class CharacterService:
 
     def create_character(self, character_class: CharacterClassEnum):
         character = self.classes_service.get_class(character_class)
-
         created_character = self.firebase_client.create_character(character)
         if created_character is None:
             raise Exception("Character not created properly")
