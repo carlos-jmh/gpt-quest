@@ -28,7 +28,7 @@ gpt-quest-web/.env.test
 gpt-quest-api/node_modules
 gpt-quest-api/dist
 gpt-quest-api/.env*
-gpt-quest-api/firebase_creds.json
+gpt-quest-api/firestore_creds.json
 *.env
 
 # Ignore IDE/Editor specific files
