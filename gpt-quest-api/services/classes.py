@@ -1,4 +1,5 @@
 from schemas.classes import ClassesSchema
+from enum import Enum
 
 """- Red - Barbarian
 - Orange - Ranger
@@ -6,6 +7,15 @@ from schemas.classes import ClassesSchema
 - Yellow - Cleric
 - Blue - Rogue
 - Purple - Warlock"""
+
+class CharacterClassEnum(Enum):
+    Barbarian = 0
+    Ranger = 1
+    Druid = 2
+    Cleric = 3
+    Rogue = 4
+    Warlock = 5
+    Bard = 6
 
 class ClassesService:
 

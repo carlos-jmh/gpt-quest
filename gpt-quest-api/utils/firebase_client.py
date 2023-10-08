@@ -13,7 +13,6 @@ INITIAL_STORY_COLLECTION = "stories"
 
 
 
-
 class FirebaseClient:
     """
     A service class for handling Firebase Firestore operations related to user connections.
@@ -24,18 +23,18 @@ class FirebaseClient:
     def __init__(self, firebase_dao: FirestoreDAO) -> None:
         self.firebase_dao = firebase_dao
 
-    #Create Character
-    def create_character(self, character: ClassesSchema) -> dict[ClassesSchema, Any] | None:
+    # Create Character
+    def create_character(self, character: ClassesSchema) -> dict[str, Any] | None:
         character_data = {"name": character.name, "health": character.health}
         created_character = self.firebase_dao.add(CHARACTERS_COLLECTION, character_data)
         return created_character.to_dict()
 
-    #Create InitialString    
-    def create_initial_string(self, initial_string:str) -> dict[str, Any] | None:
+    # Create InitialString
+    def create_initial_string(self, initial_string: str) -> dict[str, Any] | None:
         initial_string_data = {"initial_string": initial_string}
         created_initial_string = self.firebase_dao.add(INITIAL_STORY_COLLECTION, initial_string_data)
         return created_initial_string.to_dict()
-        
+
     #Create InitialStory
     def create_initial_story(self, character_id:str, initial_story:InitialStory, ItemInput: list) -> dict[InitialStory, Any] | None:
         #item_data = {"item_name" :item.item_name, "item_type": item.item_type, "item_data": item.item_summary}
@@ -55,7 +54,6 @@ class FirebaseClient:
         item_data = {"item_name": new_item.item_name, "item_type": new_item.item_type, "item_summary": new_item.item_summary}
         ITEM_COLLECTION = INITIAL_STORY_COLLECTION + "/" + storyid"""
     
-       
 
 
 if __name__ == "__main__":
