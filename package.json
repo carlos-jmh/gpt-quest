@@ -1,5 +1,6 @@
 {
   "dependencies": {
+    "react-hook-form": "^7.47.0",
     "typewriter-effect": "^2.21.0"
   }
 }
