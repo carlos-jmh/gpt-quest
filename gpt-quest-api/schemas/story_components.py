@@ -16,7 +16,6 @@ class InitialString(BaseModel):
 class Item(BaseModel):
     item_name: str
     item_type: str
-    item_summary: str
 
 
 class InitialStory(BaseModel):
@@ -30,14 +29,18 @@ class NewEvent(BaseModel):
     event_title: str
     prompt: str
 
-
 class NewSummary(BaseModel):
     current_summary: str
+
+class NewCharacter(BaseModel):
+    health: int
+    items: List[Item] | None
 
 
 class Event(BaseModel):
     event: NewEvent
     summary: NewSummary
+    character: NewCharacter
     iteration: int | None
 
 
