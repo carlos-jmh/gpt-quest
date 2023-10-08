@@ -13,7 +13,7 @@ import {
 import {Button, ButtonGroup, Card, CardBody, Typography, Tooltip} from "@material-tailwind/react";
 
 function CharacterCreation() {
-    
+    const navigate = useNavigate()
     const [hoveredButton, setHoveredButton] = useState(null);
     const [hoveredEvent, setHoveredEvent] = useState(null);
     const [class_number, setClass] = useState(null);
