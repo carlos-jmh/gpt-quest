@@ -6,7 +6,8 @@ import {Spinner, Typography} from "@material-tailwind/react";
 function TypingEffect({obj, typingSpeed, onTypingComplete, callbackFlag}) {
     const [displayedContent, setDisplayedContent] = useState('');
     const [currentIndex, setCurrentIndex] = useState(0);
-
+    
+        
    /* useEffect(() => {
         if (obj.type === "text") {
             if (currentIndex < obj.story.length) {
@@ -54,7 +55,11 @@ function QuestChat() {
     const [actionText, setActionText] = useState("")
     const [actionInputDisabled, setActionInputDisabled] = useState(true)
     const [isCallbackFlagOn, setIsCallbackFlagOn] = useState(false)
+    const [hoveredButton, setHoveredButton] = useState(null);
 
+    const handleButtonHover = (color) => {
+        setHoveredButton(color);
+    }
     const enableActionBox = () => {
         setActionInputDisabled(false)
     }
@@ -143,7 +148,9 @@ function QuestChat() {
                     </div>
                 </CardBody>
             </Card>
-            <Button className="bg-classes-barbarian text-black p10">End Run</Button>
+            <Button className="bg-white text-black p10 rounded-lg w-40" onMouseEnter={() => handleButtonHover('red')} onMouseLeave={()=>handleButtonHover(null)} style={{backgroundColor: hoveredButton === 'red' ? 'red' : ''}}>
+                End Run
+            </Button>
 
         </div>
 
