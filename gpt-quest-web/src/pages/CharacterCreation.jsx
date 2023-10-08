@@ -15,25 +15,22 @@ import {Button, ButtonGroup, Card, CardBody, Typography, Tooltip} from "@materia
 function CharacterCreation() {
     
     const [hoveredButton, setHoveredButton] = useState(null);
-    const [text, setText] = useState(null);
-    
-    const handleButtonHover = (color, className) => {
+    const [hoveredEvent, setHoveredEvent] = useState(null);
+    const [class_number, setClass] = useState(null);
+    const [event_number, setEventNumber] = useState(null);
+
+    const handleButtonHover = (color, class_number) => {
         setHoveredButton(color);
-        setText(className);
+        setClass(class_number);
+        console.log(class_number);
     };
 
-    /*const currentSelection = {
-        class_name: str,
-        number_events: int  
-    };
-
-    const changeClassName = (name) => { 
-        currentSelection.class_name = name
+    const handleHoveredEvent = (color, event_number) => {
+        setHoveredEvent(color);
+        setEventNumber(event_number);
+        console.log(event_number);
     }
-    
-    const changeEventNumber = (number) => {
-        currentSelection.number_events = number
-    }*/
+
 
 
     return (
@@ -64,8 +61,8 @@ function CharacterCreation() {
                         >
                             <Button
                                 className="rounded-lg "
-                                onClick={() => handleButtonHover('red')}
-                                onAbort={() => handleButtonHover(null)}
+                                onClick={() => handleButtonHover('red', 0)}
+                                onAbort={() => handleButtonHover(null, 0)}
                                 style={{
                                     backgroundColor: hoveredButton === 'red' ? 'red' : '',
                                     borderColor: hoveredButton === 'red' ? 'red' : '',
@@ -87,8 +84,8 @@ function CharacterCreation() {
                         >
                             <Button
                                 className="rounded-lg"
-                                onClick={() => handleButtonHover('orange')}
-                                onAbort={() => handleButtonHover(null)}
+                                onClick={() => handleButtonHover('orange', 1)}
+                                onAbort={() => handleButtonHover(null, 1)}
                                 style={{
                                     backgroundColor: hoveredButton === 'orange' ? 'orange' : '',
                                     borderColor: hoveredButton === 'orange' ? 'orange' : '',
@@ -107,8 +104,8 @@ function CharacterCreation() {
                         >
                             <Button
                                 className="rounded-lg"
-                                onClick={() => handleButtonHover('green')}
-                                onAbort={() => handleButtonHover(null)}
+                                onClick={() => handleButtonHover('green', 2)}
+                                onAbort={() => handleButtonHover(null, 2)}
                                 style={{
                                     backgroundColor: hoveredButton === 'green' ? 'green' : '',
                                     borderColor: hoveredButton === 'green' ? 'green' : '',
@@ -129,8 +126,8 @@ function CharacterCreation() {
                                 className="rounded-lg"
                                 /*onMouseEnter={() => handleButtonHover("#ffeb3b")}
                                 onMouseLeave={() => handleButtonHover(null)}*/
-                                onClick={() => handleButtonHover('#ffeb3b')}
-                                onAbort={() => handleButtonHover(null)}
+                                onClick={() => handleButtonHover('#ffeb3b', 3)}
+                                onAbort={() => handleButtonHover(null, 3)}
                                 style={{
                                     backgroundColor: hoveredButton === "#ffeb3b" ? "#ffeb3b" : '',
                                     borderColor: hoveredButton === '#ffeb3b' ? '#ffeb3b' : '',
@@ -149,8 +146,8 @@ function CharacterCreation() {
                         >
                             <Button
                                 className="rounded-lg"
-                                onClick={() => handleButtonHover('blue')}
-                                onAbort={() => handleButtonHover(null)}
+                                onClick={() => handleButtonHover('blue', 4)}
+                                onAbort={() => handleButtonHover(null, 4)}
                                 style={{
                                     backgroundColor: hoveredButton === 'blue' ? 'blue' : '',
                                     borderColor: hoveredButton === 'blue' ? 'blue' : '',
@@ -171,8 +168,8 @@ function CharacterCreation() {
                                 className="rounded-lg"
                                 /*onMouseEnter={() => handleButtonHover('purple')}
                                 onMouseLeave={() => handleButtonHover(null)}*/
-                                onClick={() => handleButtonHover('purple')}
-                                onAbort={() => handleButtonHover(null)}
+                                onClick={() => handleButtonHover('purple', 5)}
+                                onAbort={() => handleButtonHover(null, 5)}
                                 style={{
                                     backgroundColor: hoveredButton === 'purple' ? 'purple' : '',
                                     borderColor: hoveredButton === 'purple' ? 'purple' : '',
@@ -195,8 +192,8 @@ function CharacterCreation() {
                                     handleButtonHover('pink')
                                 }
                                 //onMouseLeave={() => handleButtonHover(null)}*/
-                                onClick={() => handleButtonHover('pink')}
-                                onAbort={() => handleButtonHover(null)}
+                                onClick={() => handleButtonHover('pink', 6)}
+                                onAbort={() => handleButtonHover(null, 6)}
                                 style={{
                                     backgroundColor: hoveredButton === 'pink' ? 'pink' : '',
                                     borderColor: hoveredButton === 'pink' ? 'pink' : '',
@@ -211,11 +208,11 @@ function CharacterCreation() {
                         Length of Adventure
                     </Typography>
                     <ButtonGroup className='justify-center' >
-                        <Button>Small</Button>
-                        <Button>Medium</Button>
-                        <Button>Large</Button>
+                        <Button onClick={() => handleHoveredEvent('gray', 0)} onAbort={() => handleHoveredEvent(null, 0)}>Small</Button>
+                        <Button onClick={() => handleHoveredEvent('gray', 1)} onAbort={() => handleHoveredEvent(null, 1)}>Medium</Button>
+                        <Button onClick={() => handleHoveredEvent('gray', 2)} onAbort={() => handleHoveredEvent(null, 2)}>Large</Button>
                     </ButtonGroup>
-                <Button >Embark</Button>
+                <Button onClick={() => console.log(event_number, class_number)}>Embark</Button>
             </Card>
             
         </div>
