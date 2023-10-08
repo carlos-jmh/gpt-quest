@@ -224,12 +224,12 @@ function CharacterCreation() {
                         </Tooltip>
                     </div>
                     <Typography variant="h5" color="black">
-                        Length of Adventure
+                        Difficulty
                     </Typography>
                     <ButtonGroup className='justify-center' >
-                        <Button onClick={() => handleHoveredEvent('gray', 5)} onAbort={() => handleHoveredEvent(null, 0)}>Small</Button>
-                        <Button onClick={() => handleHoveredEvent('gray', 10)} onAbort={() => handleHoveredEvent(null, 1)}>Medium</Button>
-                        <Button onClick={() => handleHoveredEvent('gray', 15)} onAbort={() => handleHoveredEvent(null, 2)}>Large</Button>
+                        <Button onClick={() => handleHoveredEvent('gray', 5)} onAbort={() => handleHoveredEvent(null, 0)}>Easy</Button>
+                        <Button onClick={() => handleHoveredEvent('gray', 10)} onAbort={() => handleHoveredEvent(null, 1)}>Normal</Button>
+                        <Button onClick={() => handleHoveredEvent('gray', 15)} onAbort={() => handleHoveredEvent(null, 2)}>Hardcore</Button>
                     </ButtonGroup>
                 <Button onClick={() => handleCharacterCreate()}>Embark</Button>
             </Card>
