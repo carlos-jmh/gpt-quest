@@ -1,4 +1,4 @@
-import React, { useState, useEffect} from 'react';
+import { useState } from 'react';
 import Typewriter from 'typewriter-effect';
 
 import {
@@ -10,7 +10,8 @@ import {
     GiWizardFace,
 } from "react-icons/gi"; 
 
-import {Button, ButtonGroup, Card, CardBody, Typography, Tooltip} from "@material-tailwind/react";
+import {Button, ButtonGroup, Card, Typography, Tooltip} from "@material-tailwind/react";
+import {useNavigate} from "react-router-dom";
 
 function CharacterCreation() {
     const navigate = useNavigate()
@@ -31,7 +32,25 @@ function CharacterCreation() {
         console.log(event_number);
     }
 
-
+    const handleCharacterCreate = () => {
+        fetch("http://localhost:8000/character/create",
+        {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            credentials: "same-origin",
+            mode: "cors",
+            body: JSON.stringify({character_class: class_number, story_length: event_number})
+        })
+        .then(response => {
+            response.json().then(data => {
+                navigate("/quest", {state: { character_id: data }})
+            })
+        }).catch(error => {
+            console.error("Could not create character: " + error)
+        })
+    }
 
     return (
         <div style={{ justifyContent: 'center'}}>
@@ -51,7 +70,7 @@ function CharacterCreation() {
                 <Typography variant="h5" color="black">
                     Choose your Class
                 </Typography>
-                    <ButtonGroup className="gap-3.5 justify-center">
+                    <div className={"flex flex-row justify-between"}>
                         <Tooltip content="Barbarian" 
                             animate={{
                                 mount:{scale: 1, y: 0}, 
@@ -203,16 +222,16 @@ function CharacterCreation() {
                                 <GiGuitar color={"white"} style={{ fontSize: '2rem' }} />
                             </Button>
                         </Tooltip>
-                    </ButtonGroup>
+                    </div>
                     <Typography variant="h5" color="black">
                         Length of Adventure
                     </Typography>
                     <ButtonGroup className='justify-center' >
-                        <Button onClick={() => handleHoveredEvent('gray', 0)} onAbort={() => handleHoveredEvent(null, 0)}>Small</Button>
-                        <Button onClick={() => handleHoveredEvent('gray', 1)} onAbort={() => handleHoveredEvent(null, 1)}>Medium</Button>
-                        <Button onClick={() => handleHoveredEvent('gray', 2)} onAbort={() => handleHoveredEvent(null, 2)}>Large</Button>
+                        <Button onClick={() => handleHoveredEvent('gray', 5)} onAbort={() => handleHoveredEvent(null, 0)}>Small</Button>
+                        <Button onClick={() => handleHoveredEvent('gray', 10)} onAbort={() => handleHoveredEvent(null, 1)}>Medium</Button>
+                        <Button onClick={() => handleHoveredEvent('gray', 15)} onAbort={() => handleHoveredEvent(null, 2)}>Large</Button>
                     </ButtonGroup>
-                <Button onClick={() => console.log(event_number, class_number)}>Embark</Button>
+                <Button onClick={() => handleCharacterCreate()}>Embark</Button>
             </Card>
             
         </div>

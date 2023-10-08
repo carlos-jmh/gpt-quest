@@ -1,6 +1,6 @@
-import {Button, Card, CardBody, Input, Typography} from "@material-tailwind/react";
+import {Button, Card, CardBody, Input} from "@material-tailwind/react";
 import {useLocation} from "react-router-dom";
-import {useEffect, useRef, useState} from "react";
+import {useEffect, useState} from "react";
 import {Spinner} from "@material-tailwind/react";
 
 function TypingEffect({obj, typingSpeed, onTypingComplete, callbackFlag}) {
@@ -46,7 +46,6 @@ function TypingContainer({centerChat, onTypingComplete, callbackFlag}) {
 }
 
 function QuestChat() {
-
     const {state} = useLocation();
     const {character_id} = state;
     const [storyId, setStoryId] = useState("")
@@ -122,11 +121,10 @@ function QuestChat() {
     }, [character_id]);
 
     return (
-        <Card className="w-full max-w-screen-md p-4 shadow-none bg-transparent">
-            <CardBody>
+        <Card className="h-96 mb-4 p-4 text-left overflow-auto scroll-smooth focus:scroll-auto" id="dynamic-text-area">
+            <CardBody className={""}>
                 {/* Dynamic text area */}
-                <Card className="h-96 mb-4 p-4 text-left overflow-auto scroll-smooth focus:scroll-auto"
-                      id="dynamic-text-area">
+                <Card className="h-96 mb-4" id="dynamic-text-area">
                     <TypingContainer centerChat={centerChat} onTypingComplete={enableActionBox} callbackFlag={isCallbackFlagOn}/>
                 </Card>
 
