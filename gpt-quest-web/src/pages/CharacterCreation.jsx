@@ -33,16 +33,17 @@ function CharacterCreation() {
                         pauseFor: 10000,
                         loop:true,
                         delay: 70,
-                        strings: ["GptQuest"]
+                        strings: ["GPTQuest"]
                     }}
 
                 />
             </h1>
-            <Card className="w-full max-w-screen-md p-7  shadow-none flex flex-col items-center gap-7" style={{ backgroundColor: "white" }}>
-                <Typography variant="h5" color="black" className="mb-5">
+            <Card className="w-full max-w-screen-md p-7 shadow-none flex flex-col gap-5" style={{ backgroundColor: "white" }}>
+                <Typography variant="h5" color="black">
                     Choose your Class
                 </Typography>
                 <div class="flex flex-row justify-between align-center">
+                    <div>
                     <Tooltip content="Barbarian" 
                         animate={{
                             mount:{scale: 1, y: 0}, 
@@ -66,6 +67,8 @@ function CharacterCreation() {
                             <Gi3DHammer  color={"white"} style={{ fontSize: '2rem' }} />
                         </Button>
                     </Tooltip>
+                    </div>
+                    <div>
                     <Tooltip content="Ranger" 
                         animate={{
                             mount:{scale: 1, y: 0}, 
@@ -86,6 +89,8 @@ function CharacterCreation() {
                             <GiBowArrow color={"white"} style={{ fontSize: '2rem' }} />
                         </Button>
                     </Tooltip>
+                    </div>
+                    <div>
                     <Tooltip content="Druid" 
                         animate={{
                             mount:{scale: 1, y: 0}, 
@@ -106,6 +111,8 @@ function CharacterCreation() {
                             <GiWizardFace color={"white"} style={{ fontSize: '2rem' }} />
                         </Button>
                     </Tooltip>
+                    </div>
+                    <div>
                     <Tooltip content="Cleric" 
                         animate={{
                             mount:{scale: 1, y: 0}, 
@@ -126,6 +133,8 @@ function CharacterCreation() {
                             <GiHealthIncrease color={"white"} style={{ fontSize: '2rem' }} />
                         </Button>
                     </Tooltip>
+                    </div>
+                    <div>
                     <Tooltip content="Rogue" 
                         animate={{
                             mount:{scale: 1, y: 0}, 
@@ -146,6 +155,8 @@ function CharacterCreation() {
                             <GiRogue color={"white"} style={{ fontSize: '2rem' }} />
                         </Button>
                     </Tooltip>
+                    </div>
+                    <div>
                     <Tooltip content="Warlock" 
                         animate={{
                             mount:{scale: 1, y: 0}, 
@@ -166,6 +177,8 @@ function CharacterCreation() {
                             <GiCursedStar color={"white"} style={{ fontSize: '2rem' }} />
                         </Button>
                     </Tooltip>
+                    </div>
+                    <div>
                     <Tooltip content="Bard" 
                         animate={{
                             mount:{scale: 1, y: 0}, 
@@ -187,8 +200,7 @@ function CharacterCreation() {
                         </Button>
                     </Tooltip>
                     </div>
-                <ButtonGroup className="gap-3.5 justify-center">
-                </ButtonGroup>
+                </div>
                 <Typography variant="h5" color="black">
                     Length of Adventure
                 </Typography>
@@ -197,7 +209,9 @@ function CharacterCreation() {
                     <Button>Medium</Button>
                     <Button>Large</Button>
                 </ButtonGroup>
-                <Button >Embark</Button>
+                <div class="flex flex-row justify-center align-center">
+                    <Button>Embark</Button>
+                </div>
             </Card>
             
         </div>
