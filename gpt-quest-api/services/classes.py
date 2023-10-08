@@ -1,4 +1,5 @@
 from schemas.classes import ClassesSchema
+from enum import Enum
 
 """- Red - Barbarian
 - Orange - Ranger
@@ -7,12 +8,23 @@ from schemas.classes import ClassesSchema
 - Blue - Rogue
 - Purple - Warlock"""
 
+
+class CharacterClassEnum(Enum):
+    Barbarian = 0
+    Ranger = 1
+    Druid = 2
+    Cleric = 3
+    Rogue = 4
+    Warlock = 5
+    Bard = 6
+
+
 class ClassesService:
 
     def __init__(self) -> None:
         pass
 
-    def get_class(self, classes_id) -> ClassesSchema:
+    def get_class(self, class_enum: CharacterClassEnum) -> ClassesSchema:
         """Get classes by ID."""
 
         classes_list = [
@@ -46,4 +58,4 @@ class ClassesService:
             },
         ]
 
-        return ClassesSchema(**classes_list[classes_id])
+        return ClassesSchema(**classes_list[class_enum.value])
