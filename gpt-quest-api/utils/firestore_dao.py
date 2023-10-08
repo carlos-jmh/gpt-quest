@@ -14,15 +14,28 @@ class FirestoreDAO:
     data manipulation, and resource cleanup.
     """
 
+    firebase_initialized = False
+
     def __init__(self, credentials_path: str) -> None:
+        # self.credentials_path = credentials_path
+        # self.firebase_app = None
+        # self.firestore_client = None
         self.credentials_path = credentials_path
         self.firebase_app = None
         self.firestore_client = None
+        self._initialize_client()
 
     def _initialize_client(self) -> None:
-        if self.firebase_app is None:
+        # if self.firebase_app is False:
+        #     creds = credentials.Certificate(self.credentials_path)
+        #     self.firebase_app = firebase_admin.initialize_app(creds)
+        #
+        # if self.firestore_client is None:
+        #     self.firestore_client = firestore.client()
+        if not FirestoreDAO.firebase_initialized:
             creds = credentials.Certificate(self.credentials_path)
             self.firebase_app = firebase_admin.initialize_app(creds)
+            FirestoreDAO.firebase_initialized = True
 
         if self.firestore_client is None:
             self.firestore_client = firestore.client()

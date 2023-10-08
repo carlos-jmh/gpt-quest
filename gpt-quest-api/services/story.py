@@ -51,7 +51,7 @@ class StoryService:
         {
             "initial_story": 
                 {
-                    "introduction": str (between 40 to 50 words)
+                    "introduction": str (less than 50 words)
                 }
         }
         """
@@ -75,13 +75,15 @@ class StoryService:
         new_story_dict.update({
             "max_iterations": story_length.value,
             "character_id": character_id,
-            "items": None
+            "items": None,
+            "id": None
         })
+        print(new_story_dict)
         new_story = InitialStory(**new_story_dict)
 
-        self.firebase_client.create_initial_story(new_story)
+        created_story = self.firebase_client.create_initial_story(new_story)
 
-        return new_story
+        return created_story
 
     def take_action(self, story_id: str, action: str) -> Event:
         max_tokens = 400
@@ -119,12 +121,13 @@ class StoryService:
         )
 
         new_event_dict: dict[str, any] = json.loads(new_event_response.content)
-        new_event_dict.update({"iteration": current_iteration + 1})
+        new_event_dict.update({
+            "iteration": current_iteration + 1,
+            "id": None
+        })
         new_event = Event(**new_event_dict)
-
-        self.firebase_client.add_event_to_story(story_id, new_event)
-
-        return new_event
+        created_event = self.firebase_client.add_event_to_story(story_id, new_event)
+        return created_event
 
 
 def get_story_service():

@@ -21,7 +21,7 @@ class FirebaseClient:
 
     # Create Character
     def create_character(self, character: ClassesSchema) -> dict[str, Any] | None:
-        character_data = {"name": character.name, "health": character.health}
+        character_data = {"character_class": character.character_class.value, "health": character.health}
         created_character = self.firebase_dao.add(CHARACTERS_COLLECTION, character_data)
         created_character_dict = created_character.to_dict()
         created_character_dict.update({"id": created_character.id})
@@ -45,21 +45,22 @@ class FirebaseClient:
     #     created_initial_story_dict.update({"id": created_initial_story.id})
     #     return created_initial_story_dict
 
-    def create_initial_story(self, initial_story: InitialStory) -> dict[InitialStory, Any] | None:
+    def create_initial_story(self, initial_story: InitialStory) -> InitialStory:
         initial_story_data = initial_story.model_dump()
         created_initial_story = self.firebase_dao.add(STORIES_COLLECTION, initial_story_data)
         created_initial_story_dict = created_initial_story.to_dict()
         created_initial_story_dict.update({"id": created_initial_story.id})
-        return created_initial_story_dict
+        print(created_initial_story_dict)
+        return InitialStory(**created_initial_story_dict)
 
     # Create Story Action
-    def add_event_to_story(self, story_id: str, new_event: Event) -> dict[NewEvent, Any] | None:
+    def add_event_to_story(self, story_id: str, new_event: Event) -> Event:
         event_data = new_event.model_dump()
         EVENT_COLLECTION = STORIES_COLLECTION + "/" + story_id + "/events"
         created_event_story = self.firebase_dao.add(EVENT_COLLECTION, event_data)
         created_event_story_dict = created_event_story.to_dict()
         created_event_story_dict.update({"id": created_event_story.id})
-        return created_event_story_dict
+        return Event(**created_event_story_dict)
 
     def get_story(self, story_id: str) -> dict[str, Any]:
         story = self.firebase_dao.read(STORIES_COLLECTION, story_id)
