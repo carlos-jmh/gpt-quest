@@ -40,3 +40,4 @@ gpt-quest-api/firebase_creds.json
 *.sln
 *.sw*
 .DS_Store
+*.mp3
