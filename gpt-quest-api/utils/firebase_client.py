@@ -1,11 +1,12 @@
-import datetime
+from services.classes import ClassesService
+from schemas.classes import ClassesSchema
+from schemas.story_components import InitialStory
+from schemas.story_components import NewEvent
+from utils.firestore_dao import FirestoreDAO
+from typing import Any
 
-from firestore_dao import FirestoreDAO
-from google.cloud.firestore_v1.watch import Watch
-from typing import Dict, Callable, Any
-
-USERS_COLLECTION = "users"
-MESSAGES_COLLECTION = "messages"
+CHARACTERS_COLLECTION = "characters"
+INITIAL_STORY_COLLECTION = "stories"
 
 
 class FirebaseClient:
@@ -18,25 +19,49 @@ class FirebaseClient:
     def __init__(self, firebase_dao: FirestoreDAO) -> None:
         self.firebase_dao = firebase_dao
 
-    def create_user(self, username: str) -> dict[str, Any] | None:
-        user_data = {"username": username}
-        created_user = self.firebase_dao.add(USERS_COLLECTION, user_data)
-        return created_user.to_dict()
+    # Create Character
+    def create_character(self, character: ClassesSchema) -> dict[str, Any] | None:
+        character_data = {"name": character.name, "health": character.health}
+        created_character = self.firebase_dao.add(CHARACTERS_COLLECTION, character_data)
+        created_character_dict = created_character.to_dict()
+        created_character_dict.update({"id": created_character.id})
+        return created_character_dict
 
-    def create_message(self, message, from_user) -> dict[str, Any] | None:
-        message_data = {
-            "message": message,
-            "from": from_user,
-            "createdAt": datetime.datetime.now()
-        }
+    # Create InitialString
+    def create_initial_string(self, initial_string: str) -> dict[str, Any] | None:
+        initial_string_data = {"initial_string": initial_string}
+        created_initial_string = self.firebase_dao.add(INITIAL_STORY_COLLECTION, initial_string_data)
+        return created_initial_string.to_dict()
 
-        created_message = self.firebase_dao.add(MESSAGES_COLLECTION, message_data)
-        return created_message.to_dict()
+    # Create InitialStory
+    def create_initial_story(self, character_id: str, initial_story: InitialStory, ItemInput: list) -> dict[
+                                                                                                           InitialStory, Any] | None:
+        # item_data = {"item_name" :item.item_name, "item_type": item.item_type, "item_data": item.item_summary}
+        initial_story.items = ItemInput
+        initial_story_data = {"introduction": initial_story.initial_story, "character_id": character_id,
+                              "items": initial_story.items}
+        created_initial_story = self.firebase_dao.add(INITIAL_STORY_COLLECTION, initial_story_data)
+        created_initial_story_dict = created_initial_story.to_dict()
+        created_initial_story_dict.update({"id": created_initial_story.id})
+        return created_initial_story_dict
 
-    def subscribe_to_messages(self, callback: Callable) -> Watch:
-        subscription = self.firebase_dao.subscribe_to_collection(MESSAGES_COLLECTION, callback)
-        return subscription
+    # Create Story Action
+    def add_event_to_story(self, storyid: str, new_event: NewEvent) -> dict[NewEvent, Any] | None:
+        event_data = {"title": new_event.event_title, "prompt": new_event.prompt,
+                      "previous_event_summary": new_event.previous_event_summary}
+        EVENT_COLLECTION = INITIAL_STORY_COLLECTION + "/" + storyid + "/events"
+        created_event_story = self.firebase_dao.add(EVENT_COLLECTION, event_data)
+        created_event_story_dict = created_event_story.to_dict()
+        created_event_story_dict.update({"id": created_event_story.id})
+        return created_event_story_dict
+
+    """def add_items_to_story(self, storyid:str, new_item:Item) -> dict[Item, Any] | None:
+        item_data = {"item_name": new_item.item_name, "item_type": new_item.item_type, "item_summary": new_item.item_summary}
+        ITEM_COLLECTION = INITIAL_STORY_COLLECTION + "/" + storyid"""
 
 
 if __name__ == "__main__":
-    pass
+    FIRESTORE_DAO = FirestoreDAO("firestore_creds.json")
+    FIREBASE_CLIENT = FirebaseClient(FIRESTORE_DAO)
+    Classes = ClassesService()
+    FIREBASE_CLIENT.create_character(Classes.get_class(1))
