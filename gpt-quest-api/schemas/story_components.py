@@ -3,9 +3,15 @@ from typing import List
 
 class InitialString(BaseModel):
     introduction: str
+    
+class Item(BaseModel):
+    item_name: str
+    item_type: str
+    item_summary: str
 
 class InitialStory(BaseModel):
     initial_story: InitialString
+    items: List[Item]
 
 class NewEvent(BaseModel):
     event_title: str
