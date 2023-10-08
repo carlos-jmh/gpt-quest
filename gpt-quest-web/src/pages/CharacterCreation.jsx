@@ -25,7 +25,7 @@ function CharacterCreation() {
     
 
     return (
-        <div>
+        <div style={{ justifyContent: 'center'}}>
             <h1 style={{color: "white" ,height: "25vh"}}>
                 <Typewriter
                     options={{
@@ -38,11 +38,11 @@ function CharacterCreation() {
 
                 />
             </h1>
-            <Card className="w-full max-w-screen-md p-4 shadow-none" style={{ backgroundColor: "white" }}>
+            <Card className="w-full max-w-screen-md p-7  shadow-none flex flex-col items-center gap-7" style={{ backgroundColor: "white" }}>
                 <Typography variant="h5" color="black" className="mb-5">
                     Choose your Class
                 </Typography>
-                <ButtonGroup className="gap-3.5 justify-center mb-4">
+                <ButtonGroup className="gap-3.5 justify-center">
                     <Tooltip content="Barbarian" 
                         animate={{
                             mount:{scale: 1, y: 0}, 
@@ -56,7 +56,9 @@ function CharacterCreation() {
                             onMouseLeave={() => handleButtonHover(null, null)}
                             style={{
                                 backgroundColor: hoveredButton === 'red' ? 'red' : '',
-                                transition: 'background-color 0.3s',
+                                borderColor: hoveredButton === 'red' ? 'red' : '',
+                                transition: 'all 0.3s',
+                                //transition: 'border-color 0.3s',
                             }}
                             data-tooltip-target="tooltip-light"
                             type="button"
@@ -77,7 +79,8 @@ function CharacterCreation() {
                             onMouseLeave={() => handleButtonHover(null)}
                             style={{
                                 backgroundColor: hoveredButton === 'orange' ? 'orange' : '',
-                                transition: 'background-color 0.3s',
+                                borderColor: hoveredButton === 'orange' ? 'orange' : '',
+                                transition: 'all 0.3s',
                             }}
                         >
                             <GiBowArrow color={"white"} style={{ fontSize: '2rem' }} />
@@ -96,8 +99,8 @@ function CharacterCreation() {
                             onMouseLeave={() => handleButtonHover(null)}
                             style={{
                                 backgroundColor: hoveredButton === 'green' ? 'green' : '',
-                                transition: 'background-color 0.3s',
-                                position: 'relative',
+                                borderColor: hoveredButton === 'green' ? 'green' : '',
+                                transition: 'all 0.3s',
                             }}
                         >
                             <GiWizardFace color={"white"} style={{ fontSize: '2rem' }} />
@@ -116,7 +119,8 @@ function CharacterCreation() {
                             onMouseLeave={() => handleButtonHover(null)}
                             style={{
                                 backgroundColor: hoveredButton === "#ffeb3b" ? "#ffeb3b" : '',
-                                transition: 'background-color 0.3s',
+                                borderColor: hoveredButton === '#ffeb3b' ? '#ffeb3b' : '',
+                                transition: 'all 0.3s',
                             }}
                         >
                             <GiHealthIncrease color={"white"} style={{ fontSize: '2rem' }} />
@@ -135,7 +139,8 @@ function CharacterCreation() {
                             onMouseLeave={() => handleButtonHover(null)}
                             style={{
                                 backgroundColor: hoveredButton === 'blue' ? 'blue' : '',
-                                transition: 'background-color 0.3s',
+                                borderColor: hoveredButton === 'blue' ? 'blue' : '',
+                                transition: 'all 0.3s',
                             }}
                         >
                             <GiRogue color={"white"} style={{ fontSize: '2rem' }} />
@@ -154,7 +159,8 @@ function CharacterCreation() {
                             onMouseLeave={() => handleButtonHover(null)}
                             style={{
                                 backgroundColor: hoveredButton === 'purple' ? 'purple' : '',
-                                transition: 'background-color 0.3s',
+                                borderColor: hoveredButton === 'purple' ? 'purple' : '',
+                                transition: 'all 0.3s',
                             }}
                         >
                             <GiCursedStar color={"white"} style={{ fontSize: '2rem' }} />
@@ -173,15 +179,25 @@ function CharacterCreation() {
                             onMouseLeave={() => handleButtonHover(null)}
                             style={{
                                 backgroundColor: hoveredButton === 'pink' ? 'pink' : '',
-                                transition: 'background-color 0.3s',
+                                borderColor: hoveredButton === 'pink' ? 'pink' : '',
+                                transition: 'all 0.3s',
                             }}
                         >
                             <GiGuitar color={"white"} style={{ fontSize: '2rem' }} />
                         </Button>
                     </Tooltip>
                 </ButtonGroup>
-                <CardBody />
+                <Typography variant="h5" color="black">
+                    Length of Adventure
+                </Typography>
+                <ButtonGroup className='justify-center' >
+                    <Button>Small</Button>
+                    <Button>Medium</Button>
+                    <Button>Large</Button>
+                </ButtonGroup>
+                <Button >Embark</Button>
             </Card>
+            
         </div>
     );
 }
