@@ -129,7 +129,6 @@ function QuestChat() {
       
         <div className="chat_bg"> 
             <Card className="p-4 shadow-none" color="transparent">
-               
                 <CardBody className={""}>
                     {/* Dynamic text area */}
                     <Card className="h-96 mb-4" id="dynamic-text-area">

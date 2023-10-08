@@ -9,7 +9,6 @@
 
   color-scheme: light grey;
   color: rgba(255, 255, 255, 0.87);
-  background-color: #000000;
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
@@ -32,6 +31,28 @@ body {
   place-items: center;
   min-width: 320px;
   min-height: 100vh;
+	background: linear-gradient(-45deg, #552d21, #5f243b, #1a4655, #175043);
+	background-size: 400% 400%;
+	animation: gradient 30s ease infinite;
+	height: 100vh;
+}
+
+@keyframes gradient {
+	0% {
+		background-position: 0% 50%;
+	}
+	50% {
+		background-position: 100% 50%;
+	}
+	100% {
+		background-position: 0% 50%;
+	}
+}
+
+img {
+  display: block;
+  margin: 0 auto;
+  border-radius: 10px;
 }
 
 h1 {
