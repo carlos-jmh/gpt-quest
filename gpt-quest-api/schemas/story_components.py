@@ -17,13 +17,17 @@ class InitialStory(BaseModel):
 
 
 class NewEvent(BaseModel):
+    story_bit: str
     event_title: str
     prompt: str
-    previous_event_summary: str
+
+class NewSummary(BaseModel):
+    current_summary: str
 
 
 class Event(BaseModel):
     event: NewEvent
+    summary: NewSummary
 
 
 class SummaryPrevious(BaseModel):
