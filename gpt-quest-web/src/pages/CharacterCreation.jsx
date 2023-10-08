@@ -42,7 +42,7 @@ function CharacterCreation() {
                 <Typography variant="h5" color="black" className="mb-5">
                     Choose your Class
                 </Typography>
-                <ButtonGroup className="gap-3.5 justify-center">
+                <div class="flex flex-row justify-between align-center">
                     <Tooltip content="Barbarian" 
                         animate={{
                             mount:{scale: 1, y: 0}, 
@@ -186,6 +186,8 @@ function CharacterCreation() {
                             <GiGuitar color={"white"} style={{ fontSize: '2rem' }} />
                         </Button>
                     </Tooltip>
+                    </div>
+                <ButtonGroup className="gap-3.5 justify-center">
                 </ButtonGroup>
                 <Typography variant="h5" color="black">
                     Length of Adventure
