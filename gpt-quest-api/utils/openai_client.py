@@ -71,6 +71,7 @@ class OpenAIClient:
             logging.error(e)
             raise Exception("Failed to call OpenAI API")
 
+    @staticmethod
     def generate_image(prompt: str):
         model: str = "image-alpha-001"
         size: str = "1024x1024"
