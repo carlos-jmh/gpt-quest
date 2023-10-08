@@ -31,6 +31,7 @@ gpt-quest-api/.env
 gpt-quest-api/.env.production
 gpt-quest-api/.env.development
 gpt-quest-api/.env.test
+gpt-quest-api/gpt-chat-kh23-4937b65439b3.json
 
 # Ignore IDE/Editor specific files
 .vscode/
@@ -41,3 +42,4 @@ gpt-quest-api/.env.test
 *.sln
 *.sw*
 .DS_Store
+*.mp3
