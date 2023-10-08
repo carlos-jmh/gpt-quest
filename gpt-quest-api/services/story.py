@@ -37,12 +37,22 @@ class StoryService:
                 {
                 "current_summary": str (key points of the previous context + story_bit + prompt, less than 60 words)
                 }
+            "character":
+                {
+                "health": int (increase or decrease after events)
+                "items": (add or remove items as they are used)
+                [
+                {
+                    "item_name": str
+                    "item_type": str                
+                }
+                ]
+                }
         }
         """
         self._initialize_story_rules = """
-        We are playing a game similar to DND. 
-        You will be the dungeon master, I will be the player.
         Present me with an introduction to an adventure involving my character.
+        Do all of this in between 60 and 70 words.
         Provide output only in Json.
 
         The json will look like this:
@@ -62,7 +72,7 @@ class StoryService:
 
         character_description = (f"Character:"
                                  f"health: {character.get('health')}"
-                                 f"class: {character.get('class')}")
+                                 f"character_class: {character.get('class')}")
 
         system_prompt = self._initialize_story_rules + self._initialize_story_json_output
 
