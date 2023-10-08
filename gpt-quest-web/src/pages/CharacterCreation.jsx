@@ -42,13 +42,13 @@ function CharacterCreation() {
                         pauseFor: 10000,
                         loop:true,
                         delay: 70,
-                        strings: ["GptQuest"]
+                        strings: ["GPTQuest"]
                     }}
 
                 />
             </h1>
-            <Card className="w-full max-w-screen-md p-7  shadow-none flex flex-col items-center gap-7" style={{ backgroundColor: "white" }}>
-                <Typography variant="h5" color="black" className="mb-5">
+            <Card className="w-full max-w-screen-md p-7 shadow-none flex flex-col gap-5" style={{ backgroundColor: "white" }}>
+                <Typography variant="h5" color="black">
                     Choose your Class
                 </Typography>
                     <ButtonGroup className="gap-3.5 justify-center">

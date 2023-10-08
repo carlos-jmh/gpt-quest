@@ -1,10 +1,9 @@
 import firebase_admin
 from firebase_admin import credentials, firestore
 from google.cloud.firestore_v1.base_document import DocumentSnapshot
-from google.cloud.firestore_v1.base_query import FieldFilter
 from google.cloud.firestore_v1.client import Client
-from google.cloud.firestore_v1.watch import Watch
-from typing import Dict, Callable
+from google.cloud import firestore as FirestoreType
+from typing import Dict, List
 
 
 class FirestoreDAO:
@@ -15,15 +14,28 @@ class FirestoreDAO:
     data manipulation, and resource cleanup.
     """
 
+    firebase_initialized = False
+
     def __init__(self, credentials_path: str) -> None:
+        # self.credentials_path = credentials_path
+        # self.firebase_app = None
+        # self.firestore_client = None
         self.credentials_path = credentials_path
         self.firebase_app = None
         self.firestore_client = None
+        self._initialize_client()
 
     def _initialize_client(self) -> None:
-        if self.firebase_app is None:
+        # if self.firebase_app is False:
+        #     creds = credentials.Certificate(self.credentials_path)
+        #     self.firebase_app = firebase_admin.initialize_app(creds)
+        #
+        # if self.firestore_client is None:
+        #     self.firestore_client = firestore.client()
+        if not FirestoreDAO.firebase_initialized:
             creds = credentials.Certificate(self.credentials_path)
             self.firebase_app = firebase_admin.initialize_app(creds)
+            FirestoreDAO.firebase_initialized = True
 
         if self.firestore_client is None:
             self.firestore_client = firestore.client()
@@ -52,6 +64,16 @@ class FirestoreDAO:
         else:
             return None
 
+    def query(self, collection_path: str,
+              order_by_field: str,
+              descending: bool = True,
+              limit: int = 1) -> List[DocumentSnapshot]:
+        db = self.get_client()
+        order_direction = FirestoreType.Query.DESCENDING if descending else FirestoreType.Query.ASCENDING
+        query = db.collection(collection_path).order_by(order_by_field, direction=order_direction).limit(limit)
+        documents = query.stream()
+        return list(documents)
+
     def update(self, collection_path: str, document_id: str, data: Dict) -> DocumentSnapshot:
         db = self.get_client()
         doc_ref = db.collection(collection_path).document(document_id)
@@ -62,11 +84,6 @@ class FirestoreDAO:
         db = self.get_client()
         doc_ref = db.collection(collection_path).document(document_id)
         doc_ref.delete()
-
-    def subscribe_to_collection(self, collection_path: str, callback: Callable):
-        db = self.get_client()
-        collection_watch = db.collection(collection_path).on_snapshot(callback)
-        return collection_watch
 
 
 if __name__ == "__main__":

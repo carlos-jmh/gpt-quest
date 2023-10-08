@@ -1,4 +1,4 @@
-from schemas.classes import ClassesSchema
+from schemas.classes import *
 
 """- Red - Barbarian
 - Orange - Ranger
@@ -7,43 +7,45 @@ from schemas.classes import ClassesSchema
 - Blue - Rogue
 - Purple - Warlock"""
 
+
 class ClassesService:
 
     def __init__(self) -> None:
         pass
 
-    def get_class(self, classes_id) -> ClassesSchema:
+    @staticmethod
+    def get_class(class_enum: CharacterClassEnum) -> ClassesSchema:
         """Get classes by ID."""
 
         classes_list = [
             {
-                "name": "Barbarian",
+                "character_class": CharacterClassEnum.Barbarian,
                 "health": 140
             },
             {
-                "name": "Ranger",
+                "character_class": CharacterClassEnum.Ranger,
                 "health": 140
             },
             {
-                "name": "Druid",
+                "character_class": CharacterClassEnum.Druid,
                 "health": 140
             },
             {
-                "name": "Cleric",
+                "character_class": CharacterClassEnum.Cleric,
                 "health": 140
             },
             {
-                "name": "Rogue",
+                "character_class": CharacterClassEnum.Rogue,
                 "health": 140
             },
             {
-                "name": "Warlock",
+                "character_class": CharacterClassEnum.Warlock,
                 "health": 140
             },
             {
-                "name": "Bard",
+                "character_class": CharacterClassEnum.Bard,
                 "health": 140
             },
         ]
 
-        return ClassesSchema(**classes_list[classes_id])
+        return ClassesSchema(**classes_list[class_enum.value])

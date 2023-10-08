@@ -16,31 +16,11 @@ class OpenAIClient:
         openai.api_key = api_key
 
     @staticmethod
-    def generate_event(
+    def generate_text(
             prompt: str,
             model: str = "gpt-3.5-turbo",
-            max_tokens: int = 150,
-            system_prompt: str = """
-                                We are playing a game similar to DND. 
-                                You will be the dungeon master, I will be the player. 
-                                As the story progresses, I (the player) will be prompted by you with events 
-                                and you will ask me how I react. Provide output only in Json with 400-600 chars.
-                                The prompt and previous_event_summary should be about 150 chars each.
-
-                                The json will look like this:
-
-                                {
-                                "event": 
-                                    {
-                                    "event_title": str
-                                    "prompt": str
-                                    }
-                                "summary":
-                                    {
-                                    "previous_event_summary": str
-                                    }
-                                }
-                                """
+            max_tokens: int = 50,
+            system_prompt: str = "You are a helpful assistant."
     ) -> OpenAIResponseMessage:
         """
         Generate text based on a given prompt using the OpenAI API.
@@ -63,6 +43,7 @@ class OpenAIClient:
                 ],
                 max_tokens=max_tokens
             )
+            print(response)
 
             openai_response = OpenAIResponse(**response)
             generated_text = openai_response.choices[0].message
@@ -71,7 +52,8 @@ class OpenAIClient:
             logging.error(e)
             raise Exception("Failed to call OpenAI API")
 
-    def generate_image(prompt):
+    @staticmethod
+    def generate_image(prompt: str):
         model: str = "image-alpha-001"
         size: str = "1024x1024"
         response_format: str = "url"
@@ -81,9 +63,8 @@ class OpenAIClient:
             model=model,
             size=size,
             response_format=response_format)
-        
-        return(response["data"][0]["url"])
 
+        return response["data"][0]["url"]
 
 
 def get_openai_client():
@@ -92,5 +73,4 @@ def get_openai_client():
 
 
 if __name__ == "__main__":
-    client = get_openai_client()
-    print(client.generate_event("I leap into the chasm"))
+    pass
