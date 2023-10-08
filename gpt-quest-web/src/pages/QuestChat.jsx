@@ -1,13 +1,13 @@
 import {Button, Card, CardBody, Input} from "@material-tailwind/react";
 import {useLocation} from "react-router-dom";
 import {useEffect, useState} from "react";
-import {Spinner} from "@material-tailwind/react";
+import {Spinner, Typography} from "@material-tailwind/react";
 
 function TypingEffect({obj, typingSpeed, onTypingComplete, callbackFlag}) {
     const [displayedContent, setDisplayedContent] = useState('');
     const [currentIndex, setCurrentIndex] = useState(0);
 
-    useEffect(() => {
+   /* useEffect(() => {
         if (obj.type === "text") {
             if (currentIndex < obj.story.length) {
                 const timeoutId = setTimeout(() => {
@@ -21,7 +21,7 @@ function TypingEffect({obj, typingSpeed, onTypingComplete, callbackFlag}) {
                 onTypingComplete();
             }
         }
-    }, [currentIndex, obj, typingSpeed, onTypingComplete]);
+    }, [currentIndex, obj, typingSpeed, onTypingComplete]);*/
 
     return (
         <div>
@@ -46,9 +46,9 @@ function TypingContainer({centerChat, onTypingComplete, callbackFlag}) {
 }
 
 function QuestChat() {
-    const {state} = useLocation();
-    const {character_id} = state;
-    const [storyId, setStoryId] = useState("")
+    //const {state} = useLocation();
+    //const {character_id} = state;
+    //const [storyId, setStoryId] = useState("")
 
     const [centerChat, setCenterChat] = useState([]);
     const [actionText, setActionText] = useState("")
@@ -63,7 +63,7 @@ function QuestChat() {
         setActionInputDisabled(true)
         setActionText("")
 
-        fetch("http://localhost:8000/story/" + storyId + "/action", {
+        /*fetch("http://localhost:8000/story/" + storyId + "/action", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
@@ -83,16 +83,16 @@ function QuestChat() {
             setIsCallbackFlagOn(true)
         }).catch(error => {
             console.error("Could send action: " + error)
-        })
+        })*/
     }
 
-    useEffect(() => {
+    /*useEffect(() => {
         if (storyId !== "") {
             sendActionHandler()
         }
-    }, [storyId]);
+    }, [storyId]);*/
 
-    useEffect(() => {
+    /*useEffect(() => {
         let ignore = false;
         fetch("http://localhost:8000/story/start", {
             method: "POST",
@@ -118,23 +118,12 @@ function QuestChat() {
         return () => {
             ignore = true;
         };
-    }, [character_id]);
+    }, [character_id]);*/
 
     return (
       
         <div className="chat_bg"> 
             <Card className="p-4 shadow-none" color="transparent">
-                <CardHeader
-                    floated={false}
-                    shadow={false}
-                    color="transparent"
-                    className="m-0 rounded-none"
-                >
-                <img className="w-1/2"
-                    src="https://images.unsplash.com/photo-1540553016722-983e48a2cd10?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&q=80"
-                    alt="card-image"
-                />
-                </CardHeader>
                 <CardBody className={""}>
                     {/* Dynamic text area */}
                     <Card className="h-96 mb-4" id="dynamic-text-area">
@@ -154,6 +143,7 @@ function QuestChat() {
                     </div>
                 </CardBody>
             </Card>
+            <Button className="bg-classes-barbarian text-black p10">End Run</Button>
 
         </div>
 
