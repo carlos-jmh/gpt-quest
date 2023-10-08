@@ -10,7 +10,7 @@ import {
     GiWizardFace,
 } from "react-icons/gi"; 
 
-import {Button, ButtonGroup, Card, CardBody, Typography, Tooltip} from "@material-tailwind/react";
+import {Button, ButtonGroup, Card, CardBody, Typography, Tooltip, button} from "@material-tailwind/react";
 
 function CharacterCreation() {
     
