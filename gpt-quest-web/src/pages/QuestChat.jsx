@@ -1,13 +1,13 @@
 import {Button, Card, CardBody, Input} from "@material-tailwind/react";
 import {useLocation} from "react-router-dom";
 import {useEffect, useState} from "react";
-import {Spinner} from "@material-tailwind/react";
+import {Spinner, Typography} from "@material-tailwind/react";
 
 function TypingEffect({obj, typingSpeed, onTypingComplete, callbackFlag}) {
     const [displayedContent, setDisplayedContent] = useState('');
     const [currentIndex, setCurrentIndex] = useState(0);
 
-    useEffect(() => {
+   /* useEffect(() => {
         if (obj.type === "text") {
             if (currentIndex < obj.story.length) {
                 const timeoutId = setTimeout(() => {
@@ -21,7 +21,7 @@ function TypingEffect({obj, typingSpeed, onTypingComplete, callbackFlag}) {
                 onTypingComplete();
             }
         }
-    }, [currentIndex, obj, typingSpeed, onTypingComplete]);
+    }, [currentIndex, obj, typingSpeed, onTypingComplete]);*/
 
     return (
         <div>
@@ -86,11 +86,11 @@ function QuestChat() {
         })*/
     }
 
-    //useEffect(() => {
-     //   if (storyId !== "") {
-        //    sendActionHandler()
-       // }
-    //}, [storyId]);*/
+    /*useEffect(() => {
+        if (storyId !== "") {
+            sendActionHandler()
+        }
+    }, [storyId]);*/
 
     /*useEffect(() => {
         let ignore = false;
@@ -118,16 +118,17 @@ function QuestChat() {
         return () => {
             ignore = true;
         };
-    }, [character_id]);
-    */
+    }, [character_id]);*/
+
     return (
-        <div>
-            <Button>End Run</Button>
-            <Card className="h-96 mb-4 p-4 text-left overflow-auto scroll-smooth focus:scroll-auto" id="dynamic-text-area">
+      
+        <div className="chat_bg"> 
+            <Card className="p-4 shadow-none" color="transparent">
+               
                 <CardBody className={""}>
                     {/* Dynamic text area */}
                     <Card className="h-96 mb-4" id="dynamic-text-area">
-                        <TypingContainer centerChat={centerChat} onTypingComplete={enableActionBox} callbackFlag={isCallbackFlagOn}/>
+                        <Typography></Typography>
                     </Card>
 
                     {/* Text input and Send button */}
@@ -138,23 +139,16 @@ function QuestChat() {
                             containerProps={{
                                 className: "min-w-0",
                             }}
-                            value={actionText}
-                            onChange={(e) => setActionText(e.target.value)}
-                            disabled={actionInputDisabled}
-                            onKeyPress={(e) => {
-                                if (e.key === "Enter") {
-                                    sendActionHandler(); // Call the function here
-                                }
-                            }}
                         />
-                        <Button onClick={sendActionHandler}>{
-                            actionInputDisabled ? <Spinner/> : "Send"
-                        }</Button>
+                        <Button color="primary">Send</Button>
                     </div>
                 </CardBody>
             </Card>
+            <Button className="bg-classes-barbarian text-black p10">End Run</Button>
+
         </div>
-    )   
+
+    )
 }
 
 export default QuestChat
