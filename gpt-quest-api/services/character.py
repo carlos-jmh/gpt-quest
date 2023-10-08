@@ -8,7 +8,7 @@ class CharacterService:
         self.firebase_client = firebase_client
         self.classes_service = classes_service
 
-    def create_character(self, character_class: CharacterClassEnum):
+    def create_character(self, character_class: CharacterClassEnum) -> str:
         character = self.classes_service.get_class(character_class)
         created_character = self.firebase_client.create_character(character)
         if created_character is None:

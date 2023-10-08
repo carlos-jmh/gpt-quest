@@ -20,6 +20,7 @@ class Item(BaseModel):
 
 
 class InitialStory(BaseModel):
+    id: str | None
     initial_story: InitialString
     items: List[Item] | None
     max_iterations: int | None
@@ -36,6 +37,7 @@ class NewSummary(BaseModel):
 
 
 class Event(BaseModel):
+    id: str | None
     event: NewEvent
     summary: NewSummary
     iteration: int | None
