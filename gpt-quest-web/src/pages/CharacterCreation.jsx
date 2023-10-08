@@ -42,7 +42,7 @@ function CharacterCreation() {
             },
             credentials: "same-origin",
             mode: "cors",
-            body: JSON.stringify({character_class: class_number, story_length: event_number})
+            body: JSON.stringify({character_class: class_number, story_difficulty: event_number})
         })
         .then(response => {
             response.json().then(data => {

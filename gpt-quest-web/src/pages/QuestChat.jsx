@@ -8,7 +8,7 @@ function TypingEffect({obj, typingSpeed, onTypingComplete, callbackFlag}) {
     const [currentIndex, setCurrentIndex] = useState(0);
     
         
-   /* useEffect(() => {
+    useEffect(() => {
         if (obj.type === "text") {
             if (currentIndex < obj.story.length) {
                 const timeoutId = setTimeout(() => {
@@ -22,7 +22,7 @@ function TypingEffect({obj, typingSpeed, onTypingComplete, callbackFlag}) {
                 onTypingComplete();
             }
         }
-    }, [currentIndex, obj, typingSpeed, onTypingComplete]);*/
+    }, [currentIndex, obj, typingSpeed, onTypingComplete]);
 
     return (
         <div>
@@ -47,9 +47,9 @@ function TypingContainer({centerChat, onTypingComplete, callbackFlag}) {
 }
 
 function QuestChat() {
-    //const {state} = useLocation();
-    //const {character_id} = state;
-    //const [storyId, setStoryId] = useState("")
+    const {state} = useLocation();
+    const {character_id} = state;
+    const [storyId, setStoryId] = useState("")
 
     const [centerChat, setCenterChat] = useState([]);
     const [actionText, setActionText] = useState("")
@@ -68,7 +68,7 @@ function QuestChat() {
         setActionInputDisabled(true)
         setActionText("")
 
-        /*fetch("http://localhost:8000/story/" + storyId + "/action", {
+        fetch("http://localhost:8000/story/" + storyId + "/action", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
@@ -88,16 +88,16 @@ function QuestChat() {
             setIsCallbackFlagOn(true)
         }).catch(error => {
             console.error("Could send action: " + error)
-        })*/
+        })
     }
 
-    /*useEffect(() => {
+    useEffect(() => {
         if (storyId !== "") {
             sendActionHandler()
         }
-    }, [storyId]);*/
+    }, [storyId]);
 
-    /*useEffect(() => {
+    useEffect(() => {
         let ignore = false;
         fetch("http://localhost:8000/story/start", {
             method: "POST",
@@ -123,7 +123,7 @@ function QuestChat() {
         return () => {
             ignore = true;
         };
-    }, [character_id]);*/
+    }, [character_id]);
 
     return (
       
